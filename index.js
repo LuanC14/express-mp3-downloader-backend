@@ -6,6 +6,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
+// Respond to preflight immediately before any other middleware
+app.options('*', cors({ origin: FRONTEND_URL, optionsSuccessStatus: 204 }));
 app.use(cors({ origin: FRONTEND_URL }));
 app.use(express.json());
 
